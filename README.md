@@ -5,6 +5,7 @@ This is a full-stack mini application built with the MERN stack (MongoDB, Expres
 ## 🚀 Live Demo
 - **Frontend:** [https://indeed-dacby-assignment.vercel.app](https://indeed-dacby-assignment.vercel.app)
 - **Backend API:** [https://indeed-dacby-assignment.onrender.com](https://indeed-dacby-assignment.onrender.com)
+- **GitHub Repository:** [https://github.com/imohit1o1/indeed-dacby-assignment](https://github.com/imohit1o1/indeed-dacby-assignment)
 
 ---
 
@@ -16,6 +17,7 @@ This is a full-stack mini application built with the MERN stack (MongoDB, Expres
 - Extracts: Title, URL, Points, Author, and Posted Time.
 
 ### 2. Backend (Node.js + Express)
+- **Detailed Documentation:** [Backend README](./backend/README.md)
 - **Authentication:** JWT-based Register and Login.
 - **Story Management:** 
   - Fetch stories with **pagination** support.
@@ -34,23 +36,10 @@ This is a full-stack mini application built with the MERN stack (MongoDB, Expres
 ## 📂 Project Structure
 
 ```text
-├── backend/
-│   ├── src/
-│   │   ├── config/      # Database and Constants
-│   │   ├── controllers/ # Request handlers
-│   │   ├── middleware/  # Auth & Error handling
-│   │   ├── models/      # Mongoose schemas
-│   │   ├── routes/      # API endpoints
-│   │   ├── services/    # Scraper logic
-│   │   └── server.js    # Entry point
-├── frontend/
-│   ├── src/
-│   │   ├── components/  # UI Components
-│   │   ├── context/     # Auth Context
-│   │   ├── hooks/       # Custom hooks (useStories)
-│   │   ├── services/    # API calling layer
-│   │   └── App.jsx      # Main routing
-└── vercel.json          # Deployment config
+├── backend/             # Node.js + Express Backend
+│   └── README.md        # Detailed Backend Documentation
+├── frontend/            # React + Vite Frontend
+└── README.md            # Root Project Documentation
 ```
 
 ---
@@ -63,19 +52,10 @@ This is a full-stack mini application built with the MERN stack (MongoDB, Expres
 - pnpm / npm / yarn
 
 ### 1. Backend Setup
+For detailed instructions, see the [Backend README](./backend/README.md#setup-instructions).
 ```bash
 cd backend
 pnpm install
-```
-Create a `.env` file in the `backend/` folder:
-```env
-PORT=8000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_random_secret_key
-CORS_ORIGIN=http://localhost:5173
-```
-Run the backend:
-```bash
 pnpm run dev
 ```
 
@@ -83,29 +63,12 @@ pnpm run dev
 ```bash
 cd frontend
 pnpm install
+pnpm run dev
 ```
 Create a `.env` file in the `frontend/` folder:
 ```env
 VITE_API_BASE_URL=http://localhost:8000/api
 ```
-Run the frontend:
-```bash
-pnpm run dev
-```
-
----
-
-## 📡 API Endpoints
-
-### Auth
-- `POST /api/auth/register` - Create account
-- `POST /api/auth/login` - Get JWT token
-
-### Stories
-- `GET /api/stories?page=1&limit=10` - List stories (Paginated)
-- `GET /api/stories/:id` - Get story details
-- `POST /api/stories/:id/bookmark` - Toggle bookmark (Auth Required)
-- `POST /api/stories/scrape` - Trigger manual scrape
 
 ---
 
@@ -114,7 +77,7 @@ pnpm run dev
 - [x] Data storage in MongoDB.
 - [x] JWT Authentication.
 - [x] Story listing and detail pages.
-- [x] Bookmark toggle functionality.
+- [x] Bookmark toggle functionality with success messages.
 - [x] Protected Bookmarks page.
 - [x] Pagination (Bonus).
 - [x] Live Deployment (Bonus).
