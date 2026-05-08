@@ -3,6 +3,8 @@ import cors from 'cors';
 import { CORS_OPTIONS } from './config/constants.js';
 import { notFoundHandler, errorHandler } from './middleware/errorHandler.js';
 
+import authRoutes from './routes/auth.route.js';
+
 async function createExpressApp() {
     const app = express();
 
@@ -17,7 +19,7 @@ async function createExpressApp() {
     });
 
     // API routes
-    // app.use('/api/auth', authRoutes);
+    app.use('/api/auth', authRoutes);
     // app.use('/api/users', userRoutes);
 
     app.use(notFoundHandler);
