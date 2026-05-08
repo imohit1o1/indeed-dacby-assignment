@@ -56,15 +56,21 @@ export async function toggleBookmark(req, res, next) {
             throw error;
         }
 
-        const index = user.bookmarks.indexOf(storyId);
-        if (index === -1) {
+        const isBookmarked = user.bookmarks.some(id => id.toString() === storyId);
+
+        if (!isBookmarked) {
             user.bookmarks.push(storyId);
         } else {
-            user.bookmarks.splice(index, 1);
+            user.bookmarks = user.bookmarks.filter(id => id.toString() !== storyId);
         }
 
         await user.save();
-        return res.json({ bookmarks: user.bookmarks });
+        
+        return res.json({ 
+            message: isBookmarked ? 'Bookmark removed successfully' : 'Story bookmarked successfully',
+            isBookmarked: !isBookmarked,
+            bookmarks: user.bookmarks 
+        });
     } catch (error) {
         next(error);
     }

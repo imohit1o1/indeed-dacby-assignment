@@ -38,6 +38,8 @@ const StoryDetail = () => {
       return;
     }
 
+    if (!story?._id) return;
+
     try {
       const data = await storiesService.toggleBookmark(story._id);
       setUser({ ...user, bookmarks: data.bookmarks });
@@ -50,7 +52,7 @@ const StoryDetail = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-white">
-        <Navbar authenticated={authenticated} user={user} logout={logout} />
+        <Navbar />
         <div className="max-w-4xl mx-auto px-4 py-20 flex justify-center">
           <div className="text-orange-500 font-bold animate-pulse text-xl">Loading story...</div>
         </div>
@@ -61,7 +63,7 @@ const StoryDetail = () => {
   if (error || !story) {
     return (
       <div className="min-h-screen bg-white">
-        <Navbar authenticated={authenticated} user={user} logout={logout} />
+        <Navbar />
         <div className="max-w-4xl mx-auto px-4 py-20 text-center">
           <h2 className="text-2xl font-black text-orange-950 mb-4">{error || 'Story not found'}</h2>
           <button 
@@ -81,7 +83,7 @@ const StoryDetail = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar authenticated={authenticated} user={user} logout={logout} />
+      <Navbar />
       
       <main className="max-w-4xl mx-auto px-4 py-16">
         <button 
