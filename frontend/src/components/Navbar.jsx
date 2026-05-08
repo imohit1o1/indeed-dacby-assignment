@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { FaGithub } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
@@ -24,7 +25,7 @@ const Navbar = () => {
           >
             Stories
           </NavLink>
-          
+
           {auth && (
             <NavLink 
               to="/bookmarks" 
@@ -38,12 +39,24 @@ const Navbar = () => {
 
           <div className="h-6 w-[1px] bg-orange-100 mx-2" />
 
+          <a 
+            href="https://github.com/imohit1o1/indeed-dacby-assignment" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-slate-600 hover:text-orange-600 transition-colors flex items-center"
+            title="View on GitHub"
+          >
+            <FaGithub size={22} />
+          </a>
+
+          <div className="h-6 w-[1px] bg-orange-100 mx-2" />
+
           {auth ? (
             <div className="flex items-center gap-4">
               <span className="hidden sm:inline text-xs font-medium text-slate-500">
                 Hi, <span className="text-orange-900 font-bold">{user.username}</span>
               </span>
-              <button 
+              <button
                 onClick={logout}
                 className="text-xs font-bold text-orange-600 hover:text-orange-700 transition-colors"
               >
@@ -52,14 +65,14 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="flex items-center gap-4">
-              <Link 
-                to="/login" 
+              <Link
+                to="/login"
                 className="text-sm font-bold text-slate-600 hover:text-orange-600 transition-colors"
               >
                 Login
               </Link>
-              <Link 
-                to="/register" 
+              <Link
+                to="/register"
                 className="bg-orange-500 text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-orange-600 transition-all shadow-sm active:scale-95"
               >
                 Sign Up
