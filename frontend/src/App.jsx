@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Stories from './components/Stories';
 import Bookmarks from './components/Bookmarks';
+import StoryDetail from './components/StoryDetail';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <main className="grow">
           <Routes>
             <Route path="/stories" element={<Stories />} />
+            <Route path="/stories/:id" element={<StoryDetail />} />
             <Route path="/login" element={user ? <Navigate to="/stories" replace /> : <Login />} />
             <Route path="/register" element={user ? <Navigate to="/stories" replace /> : <Register />} />
             <Route

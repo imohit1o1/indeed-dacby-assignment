@@ -12,7 +12,7 @@ export const useStories = () => {
     const [totalPages, setTotalPages] = useState(1);
     const [scraping, setScraping] = useState(false);
 
-    const { user, isAuthenticated, logout } = useAuth();
+    const { user, isAuthenticated, logout, setUser } = useAuth();
     const authenticated = isAuthenticated();
 
     const fetchStories = useCallback(async () => {
@@ -37,8 +37,8 @@ export const useStories = () => {
         }
 
         try {
-            await storiesService.toggleBookmark(storyId);
-            await fetchStories();
+            const data = await storiesService.toggleBookmark(storyId);
+            setUser({ ...user, bookmarks: data.bookmarks });
         } catch (err) {
             console.error('Error toggling bookmark:', err);
             alert('Failed to toggle bookmark');

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { formatPostedAt, extractDomain } from '../utils/storyFormatters';
 
 const StoryCard = ({ story, onToggleBookmark, isBookmarked, authenticated }) => {
@@ -12,16 +13,24 @@ const StoryCard = ({ story, onToggleBookmark, isBookmarked, authenticated }) => 
             <span className="bg-orange-100 text-orange-800 text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md shadow-sm">
               {story.points} points
             </span>
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5">
+            <a 
+              href={story.url} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5 hover:text-orange-500 transition-colors"
+            >
               <span className="w-1 h-1 bg-slate-300 rounded-full" />
               {domain}
-            </span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-2.5 h-2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+              </svg>
+            </a>
           </div>
 
           <h3 className="text-xl font-black text-orange-950 mb-4 leading-snug group-hover:text-orange-600 transition-colors">
-            <a href={story.url} target="_blank" rel="noopener noreferrer">
+            <Link to={`/stories/${story._id}`}>
               {story.title}
-            </a>
+            </Link>
           </h3>
 
           <div className="flex flex-wrap items-center gap-y-2 gap-x-5">
