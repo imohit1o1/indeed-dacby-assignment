@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import createExpressApp from './app.js';
 import connectDB from './config/db.js';
+import { scrapeHackerNews } from './services/scraper.service.js';
 
 dotenv.config("../.env");
 
@@ -8,6 +9,10 @@ async function main() {
     try {
         // Connect to MongoDB
         await connectDB(process.env.MONGODB_URI);
+
+        // Trigger scraper on server start
+        console.log('Running initial scrape on server startup...');
+        await scrapeHackerNews();
 
         // Create Express app
         const app = await createExpressApp();
