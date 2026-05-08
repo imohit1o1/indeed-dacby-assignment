@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { CORS_OPTIONS } from './config/constants.js';
+import { getCorsOptions } from './config/constants.js';
 import { notFoundHandler, errorHandler } from './middleware/errorHandler.middleware.js';
 
 import authRoutes from './routes/auth.route.js';
@@ -10,7 +10,7 @@ async function createExpressApp() {
     const app = express();
 
     // Middleware
-    app.use(cors(CORS_OPTIONS));
+    app.use(cors(getCorsOptions()));
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
 
